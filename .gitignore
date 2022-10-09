@@ -37,3 +37,11 @@ yarn-error.log*
 
 /db/postgres/
 /db/.env
+
+# Prisma
+
+/Prisma/**/*.toml
+
+# other
+
+.env
