@@ -1,4 +1,6 @@
 import React from "react"
+import Image from "next/image"
+
 import useSWR from "swr"
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
@@ -13,9 +15,13 @@ const DisplayBookImage = ({ isbn }: { isbn: string }) => {
   if (!data) return <div>Loading...</div>
 
   return (
-    <img
-      src={data.items[0].volumeInfo.imageLinks.thumbnail}
-    />
+    <div>
+      <Image
+        src={data.items[0].volumeInfo.imageLinks.thumbnail}
+        width="150"
+        height="250"
+      />
+    </div>
   )
 }
 
