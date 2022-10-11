@@ -23,5 +23,15 @@ export const books= [
     title: "React.js&Next.js超入門 第2版",
     isbn: "9784798063980",
     rating: 1
+  },
+  {
+    title: "Amazon Web Servicesネットワーク入門",
+    isbn: "9784844381679",
+    rating: 3
+  },
+  {
+    title: "AWS認定資格試験テキスト　AWS認定ソリューションアーキテクト – アソシエイト　改訂第2版",
+    isbn: "9784815607388",
+    rating: 4
   }
 ]
