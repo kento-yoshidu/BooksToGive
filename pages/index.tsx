@@ -1,4 +1,5 @@
 import prisma from "../lib/prisma"
+import Image from "next/image"
 
 import { GetStaticProps } from "next"
 import { Book } from "../types/Book"
@@ -18,10 +19,6 @@ const Home = ({ books }: { books: Book[] }) => {
   return (
     <>
       <h1>いらない本リスト</h1>
-
-      <img
-        src={data.items[0].volumeInfo.imageLinks.thumbnail}
-      />
 
       {books.map((book) => (
         <div key={`${book.id}`}>
