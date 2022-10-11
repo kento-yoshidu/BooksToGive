@@ -5,6 +5,8 @@ import { Book } from "../types/Book"
 
 import useSWR from "swr"
 
+import DisplayBookImage from "./components/DisplayBookImage"
+
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 const Home = ({ books }: { books: Book[] }) => {
@@ -24,7 +26,9 @@ const Home = ({ books }: { books: Book[] }) => {
       {books.map((book) => (
         <div key={`${book.id}`}>
           <h2>{book.title}</h2>
-          <p>{book.isbn}</p>
+          <DisplayBookImage
+            isbn={book.isbn}
+          />
           <p>{book.rating}</p>
         </div>
       ))}
