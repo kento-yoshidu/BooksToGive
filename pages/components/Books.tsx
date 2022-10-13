@@ -12,6 +12,8 @@ const Book = ({ books }: { books: Book[] }) => (
           isbn={book.isbn}
         />
 
+        <p>{book.category}</p>
+
         <p>{book.rating}</p>
       </div>
     ))}
