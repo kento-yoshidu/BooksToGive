@@ -8,8 +8,6 @@ const Book = ({ books }: { books: Book[] }) => (
   <>
     {books.map((book) => (
       <div key={`${book.id}`}>
-        <h2>{book.title}</h2>
-
         <DisplayBookImage
           isbn={book.isbn}
         />

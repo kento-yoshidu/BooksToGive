@@ -14,14 +14,21 @@ const DisplayBookImage = ({ isbn }: { isbn: string }) => {
   if (!data) return <div>Loading...</div>
 
   return (
-    <div className={Styles.imageContainer}>
-      <Image
-        src={data.items[0].volumeInfo.imageLinks.thumbnail}
-        layout="fill"
-        objectFit="contain"
-        className={Styles.image}
-      />
-    </div>
+    <>
+      <h2>{data.items[0].volumeInfo.title}</h2>
+
+      <p>{data.items[0].volumeInfo.description}</p>
+
+      <div className={Styles.imageContainer}>
+        <Image
+          src={data.items[0].volumeInfo.imageLinks.thumbnail}
+          layout="fill"
+          objectFit="contain"
+          className={Styles.image}
+          alt="test"
+        />
+      </div>
+    </>
   )
 }
 
