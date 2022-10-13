@@ -1,5 +1,6 @@
 .imageContainer {
-  max-width: 200px;
+  max-width: 120px;
+  box-shadow: 0 0 3px 3px #ddd;
 
   & > span {
     position: unset !important;
