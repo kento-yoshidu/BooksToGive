@@ -1,9 +1,12 @@
+import Link from "next/link"
 import prisma from "../lib/prisma"
-import Image from "next/image"
 import Books from "./components/Books"
 
 import { GetStaticProps } from "next"
 import { Book } from "../types/Book"
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faGithub } from "@fortawesome/free-brands-svg-icons"
 
 const Home = ({ books }: { books: Book[] }) => (
   <>
@@ -27,6 +30,17 @@ const Home = ({ books }: { books: Book[] }) => (
         </ul>
       </section>
     </div>
+
+    <footer className="py-4 bg-gray-900 text-center">
+      <Link href="https://github.com/kento-yoshidu/BooksToGive">
+        <a className='cursor'>
+          <FontAwesomeIcon
+            className="text-4xl text-white"
+            icon={faGithub}
+          />
+        </a>
+      </Link>
+    </footer>
   </>
 )
 
