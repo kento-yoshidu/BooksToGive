@@ -15,9 +15,11 @@ const DisplayBookImage = ({ isbn }: { isbn: string }) => {
 
   return (
     <>
-      <h2>{data.items[0].volumeInfo.title}</h2>
+      <h2 className="text-lg md:text-xl mb-4">{data.items[0].volumeInfo.title}</h2>
 
-      <div className={Styles.imageContainer}>
+      <div
+        className={`${Styles.imageContainer} my-8`}
+      >
         <Image
           src={data.items[0].volumeInfo.imageLinks.thumbnail}
           layout="fill"
@@ -26,8 +28,6 @@ const DisplayBookImage = ({ isbn }: { isbn: string }) => {
           alt="test"
         />
       </div>
-
-      <p>{data.items[0].volumeInfo.description}</p>
     </>
   )
 }

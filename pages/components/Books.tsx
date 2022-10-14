@@ -11,9 +11,9 @@ const Book = ({ books }: { books: Book[] }) => {
 
   const sortByRatingASC = () => {
     const sortedData = bookData.sort((a, b) => {
-      if (a["rating"] < b["rating"]) return 1;
-      if (a["rating"] > b["rating"]) return -1;
-      return 0;
+      if (a["rating"] < b["rating"]) return 1
+      if (a["rating"] > b["rating"]) return -1
+      return 0
     })
 
     setBookData([...sortedData])
@@ -25,12 +25,11 @@ const Book = ({ books }: { books: Book[] }) => {
     const filteredData = bookData.filter((book) => {
       return book.category === e
     })
-    console.log(filteredData)
     setBookData([...filteredData])
   }
 
   const reset = () => {
-    setFilteredCategory("");
+    setFilteredCategory("")
     setBookData([...initialData])
   }
 
@@ -69,7 +68,10 @@ const Book = ({ books }: { books: Book[] }) => {
         }
 
         return (
-          <div key={`${book.id}`}>
+          <div
+            className="mt-6 pb-6 border-b-2 border-gray-300"
+            key={`${book.id}`}
+          >
             <DisplayBookImage
               isbn={book.isbn}
             />
