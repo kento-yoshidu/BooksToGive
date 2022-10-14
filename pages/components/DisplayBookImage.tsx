@@ -5,7 +5,7 @@ import useSWR from "swr"
 
 import * as Styles from "../styles/displayBookImage.module.scss"
 
-const fetcher = (...args) => fetch(...args).then(res => res.json())
+const fetcher = (...args: string[]) => fetch(...args).then(res => res.json())
 
 const DisplayBookImage = ({ isbn }: { isbn: string }) => {
   const { data, error } = useSWR(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`, fetcher)
@@ -17,8 +17,6 @@ const DisplayBookImage = ({ isbn }: { isbn: string }) => {
     <>
       <h2>{data.items[0].volumeInfo.title}</h2>
 
-      <p>{data.items[0].volumeInfo.description}</p>
-
       <div className={Styles.imageContainer}>
         <Image
           src={data.items[0].volumeInfo.imageLinks.thumbnail}
@@ -28,6 +26,8 @@ const DisplayBookImage = ({ isbn }: { isbn: string }) => {
           alt="test"
         />
       </div>
+
+      <p>{data.items[0].volumeInfo.description}</p>
     </>
   )
 }
