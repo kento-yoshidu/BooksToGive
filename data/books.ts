@@ -33,5 +33,10 @@ export const books= [
     isbn: "9784815607388",
     category: "クラウド",
     rating: 4
+  },
+  {
+    isbn: "9784839973001",
+    category: "Webフロントエンド",
+    rating: 4
   }
 ]
