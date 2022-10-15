@@ -1,6 +1,6 @@
 import Link from "next/link"
 import prisma from "../lib/prisma"
-import Books from "./components/Books"
+import Books from "../components/Books"
 
 import { GetStaticProps } from "next"
 import { Book } from "../types/Book"

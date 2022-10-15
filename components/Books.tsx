@@ -2,7 +2,7 @@ import React, { useState } from "react"
 
 import DisplayBookImage from "./DisplayBookImage"
 
-import { Book } from "../../types/Book"
+import { Book } from "../types/Book"
 
 const Book = ({ books }: { books: Book[] }) => {
   const initialData = books.map((book) => ({ ...book }))
@@ -32,6 +32,8 @@ const Book = ({ books }: { books: Book[] }) => {
     setFilteredCategory("")
     setBookData([...initialData])
   }
+
+  console.log(bookData)
 
   return (
     <>
