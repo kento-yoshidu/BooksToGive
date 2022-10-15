@@ -1,4 +1,3 @@
-import Link from "next/link"
 import Image from "next/image"
 
 import useSWR from "swr"
@@ -26,14 +25,12 @@ const DisplayBookImage = ({ isbn }: { isbn: string }) => {
       </a>
 
       <div
-        /* @ts-ignore */
         className={`${Styles.imageContainer} my-8`}
       >
         <Image
           src={data.items[0].volumeInfo.imageLinks.thumbnail}
           layout="fill"
           objectFit="contain"
-          /* @ts-ignore */
           className={Styles.image}
           alt="test"
         />
