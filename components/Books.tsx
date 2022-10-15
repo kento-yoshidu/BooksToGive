@@ -33,8 +33,6 @@ const Book = ({ books }: { books: Book[] }) => {
     setBookData([...initialData])
   }
 
-  console.log(bookData)
-
   return (
     <>
       <div className="flex flex-col md:flex-row items-start md:items-center gap-4 mb-8 md:mb-16">
