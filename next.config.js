@@ -4,4 +4,9 @@ module.exports = {
   images: {
     domains: ["books.google.com"]
   },
+  pwa: {
+    dest: "public",
+    register: true,
+    skipWaiting: true,
+  }
 }
