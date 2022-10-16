@@ -26,6 +26,11 @@ const Book = ({ books }: { books: Book[] }) => {
       return book.category === e
     })
     setBookData([...filteredData])
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    })
   }
 
   const reset = () => {

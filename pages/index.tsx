@@ -25,8 +25,8 @@ const Home = ({ books }: { books: Book[] }) => (
           <li className="mb-2">⚙ Tailwind CSS</li>
           <li className="mb-2">⚙ Prisma</li>
           <li className="mb-2">⚙ Supabase</li>
-          <li className="mb-2">⚙ AWS Amplify</li>
-          <li className="mb-2">⚙ Google books API</li>
+          <li className="mb-2">⚙ Vercel</li>
+          <li className="mb-2">⚙ Google Books API</li>
         </ul>
       </section>
     </div>
