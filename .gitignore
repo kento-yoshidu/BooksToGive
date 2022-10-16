@@ -42,6 +42,11 @@ yarn-error.log*
 
 /Prisma/**/*.toml
 
+# PWA
+
+/public/*.js
+/public/*.js.map
+
 # other
 
 .env
