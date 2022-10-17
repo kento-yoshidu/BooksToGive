@@ -1,9 +1,9 @@
 import Link from "next/link"
-import prisma from "../lib/prisma"
-import Books from "../components/Books"
+import prisma from "../src/lib/prisma"
+import Books from "../src/components/Books"
 
 import { GetStaticProps } from "next"
-import { Book } from "../types/Book"
+import { Book } from "../src/types/Book"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faGithub } from "@fortawesome/free-brands-svg-icons"

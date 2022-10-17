@@ -1,6 +1,6 @@
-# 読み終わった本をリストアップするサイト
+# 読み終わって誰かにあげたい本リスト
 
-bookstogive-kento-yoshidu.vercel.app
+[Webサイト](https://bookstogive-kento-yoshidu.vercel.app)
 
 ## ⚙ 構成技術
 
