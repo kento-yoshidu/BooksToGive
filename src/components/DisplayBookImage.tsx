@@ -2,7 +2,7 @@ import Image from "next/image"
 
 import useSWR from "swr"
 
-import * as Styles from "../pages/styles/displayBookImage.module.scss"
+import * as Styles from "../styles/displayBookImage.module.scss"
 
 /* @ts-ignore */
 const fetcher = (...args: string[]) => fetch(...args).then(res => res.json())
