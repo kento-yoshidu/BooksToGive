@@ -43,13 +43,19 @@ const Home = ({ books }: { books: Book[] }) => {
       </Link>
     </footer>
   </>
-)
-  }
+  )
+}
 
 export default Home
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const books = await prisma.book.findMany()
+  const books = await prisma.book.findMany({
+    orderBy: [
+      {
+        id: "desc"
+      }
+    ]
+  })
 
   return  {
     props: { books }
