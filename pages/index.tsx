@@ -2,13 +2,14 @@ import Link from "next/link"
 import prisma from "../src/lib/prisma"
 import Books from "../src/components/Books"
 
-import { GetStaticProps } from "next"
+import { GetServerSideProps } from "next"
 import { Book } from "../src/types/Book"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faGithub } from "@fortawesome/free-brands-svg-icons"
 
-const Home = ({ books }: { books: Book[] }) => (
+const Home = ({ books }: { books: Book[] }) => {
+  return (
   <>
     <div className="w-5/6 md:w-1/2 mx-auto mt-10">
       <h1 className="text-4xl mb-6 md:mb-8">BooksToGive</h1>
@@ -43,10 +44,11 @@ const Home = ({ books }: { books: Book[] }) => (
     </footer>
   </>
 )
+  }
 
 export default Home
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getServerSideProps: GetServerSideProps = async () => {
   const books = await prisma.book.findMany()
 
   return  {
