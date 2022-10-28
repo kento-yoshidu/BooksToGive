@@ -9,7 +9,7 @@ type FormValue = {
 
 const Register = () => {
   const [rangeValue, setRangeValue] = useState(3)
-  const { register, handleSubmit } = useForm()
+  const { register, handleSubmit } = useForm<FormValue>()
 
   const onSubmit = async (data: FormValue) => {
     const headers = {
