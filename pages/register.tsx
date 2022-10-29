@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import  {useRouter } from "next/router"
 import { useForm } from "react-hook-form"
 
 import Layout from "../src/components/Layout"
@@ -10,6 +11,8 @@ type FormValue = {
 }
 
 const Register = () => {
+  const router = useRouter()
+
   const [rangeValue, setRangeValue] = useState(3)
   const { register, handleSubmit, formState: { errors }} = useForm<FormValue>()
 
@@ -25,6 +28,12 @@ const Register = () => {
       headers: headers,
       body: JSON.stringify(body),
     })
+
+    if (res.ok) {
+      router.push("/")
+    } else {
+      // エラーページに遷移
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
