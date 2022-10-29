@@ -5,14 +5,11 @@ import Books from "../src/components/Books"
 import { GetServerSideProps } from "next"
 import { Book } from "../src/types/Book"
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faGithub } from "@fortawesome/free-brands-svg-icons"
+import Layout from "../src/components/Layout"
 
 const Home = ({ books }: { books: Book[] }) => {
   return (
-  <>
-    <div className="w-5/6 md:w-1/2 mx-auto mt-10">
-      <h1 className="text-4xl mb-6 md:mb-8">BooksToGive</h1>
+    <Layout>
 
       <Books
         books={books}
@@ -30,19 +27,7 @@ const Home = ({ books }: { books: Book[] }) => {
           <li className="mb-2">⚙ Google Books API</li>
         </ul>
       </section>
-    </div>
-
-    <footer className="py-4 bg-gray-900 text-center">
-      <Link href="https://github.com/kento-yoshidu/BooksToGive">
-        <a className='cursor'>
-          <FontAwesomeIcon
-            className="text-4xl text-white"
-            icon={faGithub}
-          />
-        </a>
-      </Link>
-    </footer>
-  </>
+    </Layout>
   )
 }
 
