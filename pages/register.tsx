@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import  {useRouter } from "next/router"
 import { useForm } from "react-hook-form"
 
 import Layout from "../src/components/Layout"
@@ -10,8 +11,10 @@ type FormValue = {
 }
 
 const Register = () => {
+  const router = useRouter()
+
   const [rangeValue, setRangeValue] = useState(3)
-  const { register, handleSubmit } = useForm<FormValue>()
+  const { register, handleSubmit, formState: { errors }} = useForm<FormValue>()
 
   const onSubmit = async (data: FormValue) => {
     const headers = {
@@ -25,6 +28,12 @@ const Register = () => {
       headers: headers,
       body: JSON.stringify(body),
     })
+
+    if (res.ok) {
+      router.push("/")
+    } else {
+      // エラーページに遷移
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -41,10 +50,13 @@ const Register = () => {
           >
             ISBN
           </label>
+          {errors.isbn?.message && <p className="mb-1 text-sm font-bold text-red-400">{errors.isbn?.message}</p>}
           <input
             id="isbn"
-            {...register("isbn")}
+            {...register("isbn", { required: "入力が必須の項目です。" })}
             className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-2/3 md:w-1/3 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+            type="number"
+            placeholder="123456789"
           />
         </div>
 
