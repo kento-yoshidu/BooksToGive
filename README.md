@@ -5,6 +5,7 @@
 ## ⚙ 構成技術
 
 - Next.js
+  - (useSWR, Next Auth, React Hook Form)
 - TypeScript
 - Tailwind CSS
 - Prisma
