@@ -16,11 +16,11 @@ export default NextAuth({
         }
       },
       async authorize(credentails, req) {
-        if (req?.body?.user !== process.env.NEXT_AUTH_USER) {
+        if (req?.body?.user !== process.env.NEXT_PUBLIC_AUTH_USER) {
           return null
         }
 
-        if (req?.body?.password !== process.env.NEXT_AUTH_PASS) {
+        if (req?.body?.password !== process.env.NEXT_PUBLIC_AUTH_PASS) {
           return null
         }
 
@@ -33,5 +33,6 @@ export default NextAuth({
         }
       }
     })
-  ]
+  ],
+  secret: process.env.NEXT_PUBLIC_SECRET
 })
