@@ -24,7 +24,7 @@ export default NextAuth({
           return null
         }
 
-        const user = { id: "1", name: req?.body?.user, email: "dummy"}
+        const user = { id: "dummy", name: req?.body?.user, email: "dummy"}
 
         if (user) {
           return user
