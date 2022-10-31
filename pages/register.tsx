@@ -1,9 +1,10 @@
 import React, { useState } from "react"
 import Head from "next/head"
-import  { useRouter } from "next/router"
+import { useRouter } from "next/router"
 import { useForm } from "react-hook-form"
 
 import Layout from "../src/components/Layout"
+import PageTitle from "../src/components/PageTitle"
 
 type FormValue = {
   isbn: string
@@ -48,6 +49,10 @@ const Register = () => {
       </Head>
 
       <Layout>
+        <PageTitle
+          pageTitle="本を登録する"
+        />
+
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-8">
             <label

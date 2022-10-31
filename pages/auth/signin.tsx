@@ -1,9 +1,9 @@
 import { useRouter } from "next/router"
 import { useSession, getCsrfToken, signIn } from "next-auth/react"
+import { CtxOrReq } from "next-auth/client/_utils"
 
 import Layout from "../../src/components/Layout"
-
-import { CtxOrReq } from "next-auth/client/_utils"
+import PageTitle from "../../src/components/PageTitle"
 
 export default function SignIn({ csrfToken }: { csrfToken: string }) {
   const router = useRouter()
@@ -16,6 +16,10 @@ export default function SignIn({ csrfToken }: { csrfToken: string }) {
 
   return (
     <Layout>
+      <PageTitle
+        pageTitle="サインイン"
+      />
+
       <form method="post" action="/api/auth/callback/credentials">
         <input name="csrfToken" type="hidden" defaultValue={csrfToken} />
         <label>
