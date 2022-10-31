@@ -2,6 +2,7 @@ import React from "react"
 import Link from "next/link"
 
 import { useRouter } from "next/router"
+import { useSession, signOut } from "next-auth/react"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faGithub } from "@fortawesome/free-brands-svg-icons"
@@ -12,11 +13,12 @@ config.autoAddCss = false
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter()
+  const { data } = useSession()
 
   return (
     <>
       <div className="w-5/6 md:w-1/2 mx-auto mt-10 min-h-[75vh]">
-        <header className="mb-6 md:mb-8">
+        <header className="mb-6 md:mb-8 relative">
           {router.pathname !== "/"
             ? (
               <h1 className="text-4xl">
@@ -29,6 +31,14 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             )
             : (
               <h1 className="text-4xl">BooksToGive</h1>
+            )}
+            {data && (
+              <button
+                className="md:absolute top-1/2 left-60 -translate-y-1/2 bg-white hover:bg-gray-100 text-sm text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+                onClick={() => signOut()}
+              >
+                サインアウト
+              </button>
             )}
         </header>
 
