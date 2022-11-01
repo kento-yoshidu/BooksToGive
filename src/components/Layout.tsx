@@ -18,7 +18,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <div className="w-5/6 md:w-1/2 mx-auto mt-10 min-h-[75vh]">
-        <header className="mb-6 md:mb-8 relative">
+        <header className="mb-6 md:mb-12 relative">
           {router.pathname !== "/"
             ? (
               <h1 className="text-4xl">
