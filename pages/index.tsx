@@ -3,7 +3,7 @@ import Head from "next/head"
 import prisma from "../src/lib/prisma"
 import Books from "../src/components/Books"
 
-import { GetServerSideProps } from "next"
+import { GetStaticProps } from "next"
 import { Book } from "../src/types/Book"
 
 import Layout from "../src/components/Layout"
@@ -42,7 +42,7 @@ const Home = ({ books }: { books: Book[] }) => {
 
 export default Home
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const books = await prisma.book.findMany({
     orderBy: [
       {
