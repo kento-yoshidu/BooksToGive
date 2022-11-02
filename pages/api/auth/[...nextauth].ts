@@ -17,20 +17,14 @@ export default NextAuth({
       },
       async authorize(credentails, req) {
         if (req?.body?.user !== process.env.NEXT_PUBLIC_AUTH_USER) {
-          return null
+          return Promise.resolve(null)
         }
 
         if (req?.body?.password !== process.env.NEXT_PUBLIC_AUTH_PASS) {
-          return null
+          return Promise.resolve(null)
         }
 
-        const user = { id: "dummy", name: req?.body?.user, email: "dummy"}
-
-        if (user) {
-          return user
-        } else {
-          return null
-        }
+        return { id: "dummy", name: req?.body?.user, email: "dummy" }
       }
     })
   ],

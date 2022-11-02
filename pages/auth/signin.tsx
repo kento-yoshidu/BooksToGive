@@ -7,14 +7,6 @@ import Layout from "../../src/components/Layout"
 import PageTitle from "../../src/components/PageTitle"
 
 export default function SignIn({ csrfToken }: { csrfToken: string }) {
-  const router = useRouter()
-
-  const { data } = useSession()
-
-  if (data) {
-    router.push("/")
-  }
-
   return (
     <Layout>
       <PageTitle
