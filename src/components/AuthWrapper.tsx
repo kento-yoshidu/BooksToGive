@@ -6,10 +6,10 @@ import ProtectedRoute from './ProtectedRoute';
 const authRoutes = ["/register"]
 
 const AuthWrapper = ({ children }: { children: React.ReactNode }) => {
-  const session = useSession();
-  const router = useRouter();
+  const session = useSession()
+  const router = useRouter()
   
-  if (session.status === 'loading') return null;
+  if (session.status === 'loading') return null
 
   return (
     <>
