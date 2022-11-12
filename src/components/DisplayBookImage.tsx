@@ -8,10 +8,12 @@ import * as Styles from "../styles/displayBookImage.module.scss"
 const fetcher = (...args: string[]) => fetch(...args).then(res => res.json())
 
 const DisplayBookImage = ({ isbn }: { isbn: string }) => {
-  const { data, error } = useSWR(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`, fetcher)
+  const { data, error } = useSWR(`https://www.googleapis.com/books/v1/volumes?q=isbn:111`, fetcher)
 
   if (error) return <div>An error has occurred.</div>
   if (!data) return <div>Loading...</div>
+
+  if (!data.items) return <div>本の情報を取得できませんでした。</div>
 
   return (
     <>
