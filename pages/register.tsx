@@ -87,6 +87,8 @@ const Register = () => {
               <option>Webフロントエンド</option>
               <option>クラウド</option>
               <option>ネットワーク</option>
+              <option>アルゴリズム</option>
+              <option>その他</option>
             </select>
           </div>
 
