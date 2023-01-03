@@ -1,0 +1,14 @@
+.imageContainer {
+  width: 150px !important;
+  box-shadow: 0 0 3px 3px #ddd;
+}
+
+.imageContainer > span {
+  position: unset !important;
+}
+
+.imageContainer .image {
+  position: relative !important;
+  width: 100% !important;
+  height: unset !important;
+}
