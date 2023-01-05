@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { Suspense, useState } from "react"
 
 import DisplayBookImage from "./DisplayBookImage"
 
@@ -65,35 +65,37 @@ const Book = ({ books }: { books: Book[] }) => {
 
       <p className="text-xl">・ {bookData.length}冊の本</p>
 
-      {bookData.map((book) => {
-        let star = "⭐️".repeat(book.rating)
+      <Suspense fallback={<p className="my-24 text-2xl text-neutral-500">データをロードしています...。</p>}>
+        {bookData.map((book) => {
+          let star = "⭐️".repeat(book.rating)
 
-        if (star.length < 10) {
-          star = star.padEnd((star.length + ((10 - star.length) / 2)), "★")
-        }
+          if (star.length < 10) {
+            star = star.padEnd((star.length + ((10 - star.length) / 2)), "★")
+          }
 
-        return (
-          <div
-            className="mt-6 pb-6 border-b-2 border-gray-300"
-            key={`${book.id}`}
-          >
-            <DisplayBookImage
-              isbn={book.isbn}
-            />
+          return (
+            <div
+              className="mt-6 pb-6 border-b-2 border-gray-300"
+              key={book.id}
+            >
+              <DisplayBookImage
+                isbn={book.isbn}
+              />
 
-            <p className="mb-4">カテゴリー： 
-              <button
-                onClick={() => filterByCategory(book.category)}
-                className="ml-2 bg-white hover:bg-gray-100 text-gray-800 text-sm font-semibold py-2 px-4 border border-gray-400 rounded shadow"
-              >
-                {book.category}
-              </button>
-            </p>
+              <p className="mb-4">カテゴリー： 
+                <button
+                  onClick={() => filterByCategory(book.category)}
+                  className="ml-2 bg-white hover:bg-gray-100 text-gray-800 text-sm font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+                >
+                  {book.category}
+                </button>
+              </p>
 
-            <p className="text-gray-500">{star}</p>
-          </div>
-        )})
-      }
+              <p className="text-gray-500">{star}</p>
+            </div>
+          )
+        })}
+      </Suspense>
     </>
   )
 }
