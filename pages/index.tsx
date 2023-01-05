@@ -1,4 +1,3 @@
-import { Suspense } from "react"
 import Head from "next/head"
 
 import prisma from "../src/lib/prisma"
@@ -17,11 +16,9 @@ const Home = ({ books }: { books: Book[] }) => (
 
     <Layout>
 
-      <Suspense fallback={<h1>Loading...</h1>}>
-        <Books
-          books={books}
-        />
-      </Suspense>
+      <Books
+        books={books}
+      />
 
       <section className="my-12">
         <h1 className="text-2xl md:text-3xl">Technology</h1>
