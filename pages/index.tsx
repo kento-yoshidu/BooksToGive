@@ -1,12 +1,13 @@
+import { Suspense } from "react"
 import Head from "next/head"
 
 import prisma from "../src/lib/prisma"
-import Books from "../src/components/Books"
 
 import { GetStaticProps } from "next"
 import { Book } from "../src/types/Book"
 
 import Layout from "../src/components/Layout"
+import Books from "../src/components/Books"
 
 const Home = ({ books }: { books: Book[] }) => (
   <>
@@ -15,9 +16,12 @@ const Home = ({ books }: { books: Book[] }) => (
     </Head>
 
     <Layout>
-      <Books
-        books={books}
-      />
+
+      <Suspense fallback={<h1>Loading...</h1>}>
+        <Books
+          books={books}
+        />
+      </Suspense>
 
       <section className="my-12">
         <h1 className="text-2xl md:text-3xl">Technology</h1>
