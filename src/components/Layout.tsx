@@ -45,11 +45,11 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         {children}
       </div>
 
-      <footer className="mt-20 py-4 bg-gray-900 text-center">
+      <footer className="mt-20 py-8 bg-gray-900 text-center">
         <Link href="https://github.com/kento-yoshidu/BooksToGive">
           <a className='cursor'>
             <FontAwesomeIcon
-              className="text-4xl text-white"
+              className="text-5xl text-white"
               icon={faGithub}
             />
           </a>
