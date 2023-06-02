@@ -25,7 +25,7 @@ const Home = ({ books }: { books: Book[] }) => (
         <ul className="mt-4 md:mt-8 text-base md:text-lg">
           <li className="mb-1">⚙ Next.js</li>
           <ul className="ml-3 mb-2">
-            <li className="mb-1"><span className="text-gray-600 text-sm">▶</span> useSWR&nbsp;&nbsp;&nbsp;Next Auth&nbsp;&nbsp;&nbsp;React Hook Form</li>
+            <li className="mb-1"><span className="text-gray-600 text-sm">▶</span> useSWR&nbsp;&nbsp;&nbsp;Next Auth&nbsp;&nbsp;&nbsp;React Hook Form&nbsp;&nbsp;&nbsp;Suspense</li>
           </ul>
           <li className="mb-2">⚙ TypeScript</li>
           <li className="mb-2">⚙ Tailwind CSS</li>
