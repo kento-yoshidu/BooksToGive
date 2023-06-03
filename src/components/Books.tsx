@@ -40,7 +40,7 @@ const Book = ({ books }: { books: Book[] }) => {
 
   return (
     <>
-      <div className="flex flex-col md:flex-row items-start md:items-center gap-4 mb-8 md:mb-16">
+      <div className="flex flex-col md:flex-row items-start md:items-center gap-4 mb-8">
         <button
           onClick={sortByRatingASC}
           className="bg-white hover:bg-gray-100 text-sm md:text-base text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
@@ -48,14 +48,14 @@ const Book = ({ books }: { books: Book[] }) => {
           📈 レートが高い順に並び変え
         </button>
 
-        <p>絞り込み : 
+        <p>絞り込み :
           {filteredCategory && (
             <>
               <button
                 className="ml-2 mr-1 bg-white hover:bg-gray-100 text-xs font-semibold p-1 border border-gray-400 rounded shadow"
                 onClick={reset}
               >
-              ❌ 
+              ❌
               </button>
               <span>{filteredCategory}</span>
             </>
@@ -65,7 +65,7 @@ const Book = ({ books }: { books: Book[] }) => {
 
       <p className="text-xl">・ {bookData.length}冊の本</p>
 
-      <div className="flex flex-wrap gap-x-8 gap-y-12">
+      <div className="flex flex-wrap md:gap-x-8 md:gap-y-12">
         <Suspense fallback={<p className="my-24 text-2xl text-neutral-500">データをロードしています...。</p>}>
           {bookData.map((book, i) => {
             let star = "⭐️".repeat(book.rating)
@@ -76,7 +76,7 @@ const Book = ({ books }: { books: Book[] }) => {
 
             return (
               <div
-                className="mt-6 pb-6 border-b-2 border-gray-300 w-[45%]"
+                className="mt-6 pb-6 border-b-2 border-gray-300 w-full md:w-[45%]"
                 key={book.id}
               >
                 <p className="inline-block mb-4 px-4 border-zinc-500 border-2">{i + 1}</p>
@@ -85,7 +85,7 @@ const Book = ({ books }: { books: Book[] }) => {
                   isbn={book.isbn}
                 />
 
-                <p className="mb-4">カテゴリー： 
+                <p className="mb-4">カテゴリー：
                   <button
                     onClick={() => filterByCategory(book.category)}
                     className="ml-2 bg-white hover:bg-gray-100 text-gray-800 text-sm font-semibold py-2 px-4 border border-gray-400 rounded shadow"

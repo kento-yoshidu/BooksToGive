@@ -8,7 +8,7 @@ const authRoutes = ["/register"]
 const AuthWrapper = ({ children }: { children: React.ReactNode }) => {
   const session = useSession()
   const router = useRouter()
-  
+
   if (session.status === 'loading') return null
 
   return (

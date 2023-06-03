@@ -18,7 +18,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
       <div className="w-5/6 md:w-1/2 mx-auto mt-10 min-h-[75vh]">
-        <header className="mb-6 md:mb-12 relative">
+        <header className="mb-4 relative">
           {router.pathname !== "/"
             ? (
               <h1 className="text-4xl">
@@ -41,6 +41,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               </button>
             )}
         </header>
+
+        <p className="mb-16 text-lg">更新日 : <time dateTime="2023-06-04">2023年6月4日</time></p>
 
         {children}
       </div>
