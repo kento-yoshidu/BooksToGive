@@ -4,18 +4,39 @@ import DisplayBookImage from "./DisplayBookImage"
 
 import { Book } from "../types/Book"
 
-const Book = ({ books }: { books: Book[] }) => {
+/*
+const setNewBooks = (books: Book[], page: number) => {
+  // オブジェクトを条件ごとに10件抜き出して返す
+
+  return [{
+    id: 1,
+    isbn: "999",
+    category: "test",
+    rating: 5
+  }]
+}
+*/
+
+const Book = ({ books, pagination }: { books: Book[], pagination: number }) => {
+  // const newBooks = setNewBooks(books, pagination)
+
   const initialData = books.map((book) => ({ ...book }))
+  // const [bookData, setBookData] = useState(newBooks)
   const [bookData, setBookData] = useState(books)
+
   const [filteredCategory, setFilteredCategory] = useState<string | null>(null)
 
   const sortByRatingASC = () => {
+    window.alert("ok")
     const sortedData = bookData.sort((a, b) => {
       if (a["rating"] < b["rating"]) return 1
       if (a["rating"] > b["rating"]) return -1
       return 0
     })
 
+    // const newBooks = setNewBooks(sortedData, pagination)
+
+    // setBookData([...newBooks])
     setBookData([...sortedData])
   }
 
@@ -25,6 +46,11 @@ const Book = ({ books }: { books: Book[] }) => {
     const filteredData = bookData.filter((book) => {
       return book.category === e
     })
+
+    // const newBooks = setNewBooks(filteredData, pagination)
+
+    // setBookData([...newBooks])
+
     setBookData([...filteredData])
 
     window.scrollTo({
@@ -80,6 +106,8 @@ const Book = ({ books }: { books: Book[] }) => {
                 key={book.id}
               >
                 <p className="inline-block mb-4 px-4 border-zinc-500 border-2">{i + 1}</p>
+
+                <p>id={book.id}</p>
 
                 <DisplayBookImage
                   isbn={book.isbn}
