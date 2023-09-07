@@ -1,57 +1,47 @@
 import React, { Suspense, useState } from "react"
+import { useRouter } from "next/router"
 
 import DisplayBookImage from "./DisplayBookImage"
 
 import { Book } from "../types/Book"
 
-/*
-const setNewBooks = (books: Book[], page: number) => {
-  // オブジェクトを条件ごとに10件抜き出して返す
-
-  return [{
-    id: 1,
-    isbn: "999",
-    category: "test",
-    rating: 5
-  }]
+const setNewBooks = (books: Book[], skip: number) => {
+  if (!skip) {
+    return books.slice(0)
+  } else {
+    const num = (skip - 1) * 10
+    return books.slice(num, num + 10)
+  }
 }
-*/
 
-const Book = ({ books, pagination }: { books: Book[], pagination: number }) => {
-  // const newBooks = setNewBooks(books, pagination)
+const Book = ({ books }: { books: Book[] }) => {
+  const router = useRouter()
+  const { id } = router.query
 
   const initialData = books.map((book) => ({ ...book }))
-  // const [bookData, setBookData] = useState(newBooks)
-  const [bookData, setBookData] = useState(books)
+
+  const [bookList, setBookList] = useState(setNewBooks(books, Number(id)))
 
   const [filteredCategory, setFilteredCategory] = useState<string | null>(null)
 
   const sortByRatingASC = () => {
-    window.alert("ok")
-    const sortedData = bookData.sort((a, b) => {
+    const sortedData = books.sort((a, b) => {
       if (a["rating"] < b["rating"]) return 1
       if (a["rating"] > b["rating"]) return -1
       return 0
     })
 
-    // const newBooks = setNewBooks(sortedData, pagination)
-
-    // setBookData([...newBooks])
-    setBookData([...sortedData])
+    setBookList(setNewBooks(sortedData, Number(id)))
   }
 
   const filterByCategory = (e: string) => {
     setFilteredCategory(e)
 
-    const filteredData = bookData.filter((book) => {
+    const filteredData = books.filter((book) => {
       return book.category === e
     })
 
-    // const newBooks = setNewBooks(filteredData, pagination)
-
-    // setBookData([...newBooks])
-
-    setBookData([...filteredData])
+    setBookList(setNewBooks(filteredData, Number(id)))
 
     window.scrollTo({
       top: 0,
@@ -61,7 +51,7 @@ const Book = ({ books, pagination }: { books: Book[], pagination: number }) => {
 
   const reset = () => {
     setFilteredCategory("")
-    setBookData([...initialData])
+    setBookList([...initialData])
   }
 
   return (
@@ -89,11 +79,11 @@ const Book = ({ books, pagination }: { books: Book[], pagination: number }) => {
         </p>
       </div>
 
-      <p className="text-xl">・ {bookData.length}冊の本</p>
+      <p className="text-xl">・ {bookList.length}冊の本</p>
 
       <div className="flex flex-wrap md:gap-x-8 md:gap-y-12">
         <Suspense fallback={<p className="my-24 text-2xl text-neutral-500">データをロードしています...。</p>}>
-          {bookData.map((book, i) => {
+          {bookList.map((book, i) => {
             let star = "⭐️".repeat(book.rating)
 
             if (star.length < 10) {

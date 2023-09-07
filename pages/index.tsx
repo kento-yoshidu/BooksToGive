@@ -18,7 +18,6 @@ const Home = ({ books }: { books: Book[] }) => (
 
       <Books
         books={books}
-        pagination={1}
       />
 
       <section className="my-12">
