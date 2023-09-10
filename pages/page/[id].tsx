@@ -1,30 +1,37 @@
+import Head from "next/head"
 import { useRouter } from "next/router"
-
 import { GetStaticProps } from "next"
 
 import prisma from "../../src/lib/prisma"
+import { extractBooks } from "../../src/lib/extractBooks"
+
+import BookList from "../../src/components/Books"
 
 import { Book } from "../../src/types/Book"
+import Layout from "../../src/components/Layout"
 
 const Page = ({ books }: { books: Book[] }) => {
-  console.log("books = ", books)
-
   const router = useRouter()
   const { id } = router.query
 
+  const new_books = extractBooks(books, Number(id))
+
   return (
-    <h1>Page</h1>
+    <>
+      <Head>
+        <title>BooksToGive</title>
+      </Head>
+
+      <Layout>
+        <BookList books={new_books} />
+      </Layout>
+    </>
   )
 }
 
 export default Page
 
 export async function getStaticPaths() {
-  /*
-  const res = await fetch('https://jsonplaceholder.typicode.com/users')
-  const users = await res.json()
-  */
-
   const books = await prisma.book.findMany({
     orderBy: [
       {
@@ -43,8 +50,6 @@ export async function getStaticPaths() {
     { params: { id: "1" }},
     { params: { id: "2" }}
   ]
-
-  console.log(paths)
 
   return { paths, fallback: false }
 }
