@@ -14,10 +14,6 @@ const Page = ({ books }: { books: Book[] }) => {
   const router = useRouter()
   const { id } = router.query
 
-  const new_books = extractBooks(books, Number(id))
-
-  console.log("new_books = ", new_books)
-
   return (
     <>
       <Head>
@@ -25,7 +21,7 @@ const Page = ({ books }: { books: Book[] }) => {
       </Head>
 
       <Layout>
-        <BookList books={new_books} />
+        <BookList books={books} pageNumber={Number(id)} />
       </Layout>
     </>
   )
@@ -41,12 +37,6 @@ export async function getStaticPaths() {
       }
     ]
   })
-
-  /*
-  const paths = books.map((book: Book ) => ({
-    params: { id: book.id.toString() },
-  }))
-  */
 
   const paths = [
     { params: { id: "1" }},
