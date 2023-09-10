@@ -4,7 +4,7 @@ import { GetStaticProps } from "next"
 import prisma from "../src/lib/prisma"
 
 import Layout from "../src/components/Layout"
-import Books from "../src/components/Books"
+import Books from "../src/components/BookList"
 
 import { Book } from "../src/types/Book"
 

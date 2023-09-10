@@ -6,7 +6,7 @@ import prisma from "../../src/lib/prisma"
 import { extractBooks } from "../../src/lib/extractBooks"
 
 import Layout from "../../src/components/Layout"
-import BookList from "../../src/components/Books"
+import BookList from "../../src/components/BookList"
 
 import { Book } from "../../src/types/Book"
 
