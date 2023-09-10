@@ -8,4 +8,3 @@ export const extractBooks = (books: Book[], skip: number) => {
     return books.slice(num, num + 10)
   }
 }
-

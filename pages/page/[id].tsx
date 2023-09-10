@@ -5,16 +5,18 @@ import { GetStaticProps } from "next"
 import prisma from "../../src/lib/prisma"
 import { extractBooks } from "../../src/lib/extractBooks"
 
+import Layout from "../../src/components/Layout"
 import BookList from "../../src/components/Books"
 
 import { Book } from "../../src/types/Book"
-import Layout from "../../src/components/Layout"
 
 const Page = ({ books }: { books: Book[] }) => {
   const router = useRouter()
   const { id } = router.query
 
   const new_books = extractBooks(books, Number(id))
+
+  console.log("new_books = ", new_books)
 
   return (
     <>

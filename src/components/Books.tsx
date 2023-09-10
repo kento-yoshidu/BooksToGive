@@ -13,7 +13,7 @@ const BookList = ({ books }: { books: Book[] }) => {
 
   const initialData = books.map((book) => ({ ...book }))
 
-  const [bookList, setBookList] = useState(extractBooks(books, Number(id)))
+  const [bookList, setBookList] = useState(books)
 
   const [filteredCategory, setFilteredCategory] = useState<string | null>(null)
 
