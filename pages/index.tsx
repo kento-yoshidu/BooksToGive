@@ -1,12 +1,12 @@
 import Head from "next/head"
+import { GetStaticProps } from "next"
 
 import prisma from "../src/lib/prisma"
 
-import { GetStaticProps } from "next"
-import { Book } from "../src/types/Book"
-
 import Layout from "../src/components/Layout"
 import Books from "../src/components/Books"
+
+import { Book } from "../src/types/Book"
 
 const Home = ({ books }: { books: Book[] }) => (
   <>

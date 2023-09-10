@@ -3,24 +3,17 @@ import { useRouter } from "next/router"
 
 import DisplayBookImage from "./DisplayBookImage"
 
+import { extractBooks } from "../lib/extractBooks"
+
 import { Book } from "../types/Book"
 
-const setNewBooks = (books: Book[], skip: number) => {
-  if (!skip) {
-    return books.slice(0)
-  } else {
-    const num = (skip - 1) * 10
-    return books.slice(num, num + 10)
-  }
-}
-
-const Book = ({ books }: { books: Book[] }) => {
+const BookList = ({ books }: { books: Book[] }) => {
   const router = useRouter()
   const { id } = router.query
 
   const initialData = books.map((book) => ({ ...book }))
 
-  const [bookList, setBookList] = useState(setNewBooks(books, Number(id)))
+  const [bookList, setBookList] = useState(extractBooks(books, Number(id)))
 
   const [filteredCategory, setFilteredCategory] = useState<string | null>(null)
 
@@ -31,7 +24,7 @@ const Book = ({ books }: { books: Book[] }) => {
       return 0
     })
 
-    setBookList(setNewBooks(sortedData, Number(id)))
+    setBookList(extractBooks(sortedData, Number(id)))
   }
 
   const filterByCategory = (e: string) => {
@@ -41,7 +34,7 @@ const Book = ({ books }: { books: Book[] }) => {
       return book.category === e
     })
 
-    setBookList(setNewBooks(filteredData, Number(id)))
+    setBookList(extractBooks(filteredData, Number(id)))
 
     window.scrollTo({
       top: 0,
@@ -122,4 +115,4 @@ const Book = ({ books }: { books: Book[] }) => {
   )
 }
 
-export default Book
+export default BookList
