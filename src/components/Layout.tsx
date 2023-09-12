@@ -10,6 +10,7 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons"
 import "@fortawesome/fontawesome-svg-core/styles.css"
 import { config } from "@fortawesome/fontawesome-svg-core"
 import Technology from "./Technology"
+import PageLink from "./PageLink"
 config.autoAddCss = false
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
@@ -43,7 +44,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             )}
         </header>
 
-        <p className="mb-16 text-lg">更新日 : <time dateTime="2023-09-06">2023年9月6日</time></p>
+        <p className="mb-4 text-lg">更新日 : <time dateTime="2023-09-06">2023年9月6日</time></p>
 
         {children}
 
