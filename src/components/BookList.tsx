@@ -8,19 +8,21 @@ import { extractBooks } from "../lib/extractBooks"
 import { Book } from "../types/Book"
 
 const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number }) => {
-  const initialData = books.map((book) => ({ ...book }))
-
   const [bookList, setBookList] = useState(extractBooks(books, pageNumber))
+  const [isSorted, setIsSorted] = useState(false)
   const [filteredCategory, setFilteredCategory] = useState<string | null>(null)
 
+
   const sortByRatingASC = () => {
-    const sortedData = books.sort((a, b) => {
+    const sortedData = books.slice().sort((a, b) => {
       if (a["rating"] < b["rating"]) return 1
       if (a["rating"] > b["rating"]) return -1
       return 0
     })
 
     setBookList(extractBooks(sortedData, pageNumber))
+
+    setIsSorted(() => !isSorted)
 
     window.scrollTo({
       top: 0,
@@ -45,7 +47,7 @@ const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number })
 
   const reset = () => {
     setFilteredCategory("")
-    setBookList([...initialData])
+    setBookList([...books])
   }
 
   return (
@@ -53,12 +55,21 @@ const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number })
       <PageLink />
 
       <div className="flex flex-col md:flex-row items-start md:items-center gap-4 mb-8">
-        <button
-          onClick={sortByRatingASC}
-          className="bg-white hover:bg-gray-100 text-sm md:text-base text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
-        >
-          📈 レートが高い順に並び変え
-        </button>
+        {isSorted ? (
+          <button
+            onClick={reset}
+            className="bg-white hover:bg-gray-100 text-sm md:text-base text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+          >
+            リセット
+          </button>
+        ) : (
+          <button
+            onClick={sortByRatingASC}
+            className="bg-white hover:bg-gray-100 text-sm md:text-base text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+          >
+            📈 レートが高い順に並び変え
+          </button>
+        )}
 
         <p>絞り込み :
           {filteredCategory && (
