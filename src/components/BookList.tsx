@@ -1,6 +1,6 @@
 import React, { Suspense, useState } from "react"
-import { useRouter } from "next/router"
 
+import PageLink from "./PageLink"
 import DisplayBookImage from "./DisplayBookImage"
 
 import { extractBooks } from "../lib/extractBooks"
@@ -11,7 +11,6 @@ const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number })
   const initialData = books.map((book) => ({ ...book }))
 
   const [bookList, setBookList] = useState(extractBooks(books, pageNumber))
-
   const [filteredCategory, setFilteredCategory] = useState<string | null>(null)
 
   const sortByRatingASC = () => {
@@ -51,6 +50,8 @@ const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number })
 
   return (
     <>
+      <PageLink />
+
       <div className="flex flex-col md:flex-row items-start md:items-center gap-4 mb-8">
         <button
           onClick={sortByRatingASC}
@@ -74,7 +75,7 @@ const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number })
         </p>
       </div>
 
-      <p className="text-xl">・ {bookList.length}冊の本</p>
+      {/* <p className="text-xl">・ {bookList.length}冊の本</p> */}
 
       <div className="flex flex-wrap md:gap-x-8 md:gap-y-12">
         <Suspense fallback={<p className="my-24 text-2xl text-neutral-500">データをロードしています...。</p>}>
