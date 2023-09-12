@@ -38,10 +38,11 @@ export async function getStaticPaths() {
     ]
   })
 
-  const paths = [
-    { params: { id: "1" }},
-    { params: { id: "2" }}
-  ]
+  const paths = []
+
+  for (let i = 2; i <= (Math.ceil(books.length / 10)); i++) {
+    paths.push({ params: { id: String(i) }})
+  }
 
   return { paths, fallback: false }
 }
