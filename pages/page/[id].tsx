@@ -5,16 +5,14 @@ import { GetStaticProps } from "next"
 import prisma from "../../src/lib/prisma"
 import { extractBooks } from "../../src/lib/extractBooks"
 
-import BookList from "../../src/components/Books"
+import Layout from "../../src/components/Layout"
+import BookList from "../../src/components/BookList"
 
 import { Book } from "../../src/types/Book"
-import Layout from "../../src/components/Layout"
 
 const Page = ({ books }: { books: Book[] }) => {
   const router = useRouter()
   const { id } = router.query
-
-  const new_books = extractBooks(books, Number(id))
 
   return (
     <>
@@ -23,7 +21,7 @@ const Page = ({ books }: { books: Book[] }) => {
       </Head>
 
       <Layout>
-        <BookList books={new_books} />
+        <BookList books={books} pageNumber={Number(id)} />
       </Layout>
     </>
   )
@@ -40,16 +38,11 @@ export async function getStaticPaths() {
     ]
   })
 
-  /*
-  const paths = books.map((book: Book ) => ({
-    params: { id: book.id.toString() },
-  }))
-  */
+  const paths = []
 
-  const paths = [
-    { params: { id: "1" }},
-    { params: { id: "2" }}
-  ]
+  for (let i = 2; i <= (Math.ceil(books.length / 10)); i++) {
+    paths.push({ params: { id: String(i) }})
+  }
 
   return { paths, fallback: false }
 }
