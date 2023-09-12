@@ -7,13 +7,10 @@ import { extractBooks } from "../lib/extractBooks"
 
 import { Book } from "../types/Book"
 
-const BookList = ({ books }: { books: Book[] }) => {
-  const router = useRouter()
-  const { id } = router.query
-
+const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number }) => {
   const initialData = books.map((book) => ({ ...book }))
 
-  const [bookList, setBookList] = useState(extractBooks(books, Number(id)))
+  const [bookList, setBookList] = useState(extractBooks(books, pageNumber))
 
   const [filteredCategory, setFilteredCategory] = useState<string | null>(null)
 
@@ -24,7 +21,12 @@ const BookList = ({ books }: { books: Book[] }) => {
       return 0
     })
 
-    setBookList(extractBooks(sortedData, Number(id)))
+    setBookList(extractBooks(sortedData, pageNumber))
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    })
   }
 
   const filterByCategory = (e: string) => {
@@ -34,7 +36,7 @@ const BookList = ({ books }: { books: Book[] }) => {
       return book.category === e
     })
 
-    setBookList(extractBooks(filteredData, Number(id)))
+    setBookList(extractBooks(filteredData, pageNumber))
 
     window.scrollTo({
       top: 0,
