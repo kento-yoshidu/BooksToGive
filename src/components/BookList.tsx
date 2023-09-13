@@ -47,7 +47,9 @@ const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number })
 
   const reset = () => {
     setFilteredCategory("")
-    setBookList([...books])
+    setBookList(extractBooks(books))
+    setIsSorted(false)
+    setFilteredCategory(null)
   }
 
   return (
