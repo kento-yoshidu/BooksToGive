@@ -12,15 +12,8 @@ const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number })
   const [isSorted, setIsSorted] = useState(false)
   const [filteredCategory, setFilteredCategory] = useState<string | null>(null)
 
-
   const sortByRatingASC = () => {
-    const sortedData = books.slice().sort((a, b) => {
-      if (a["rating"] < b["rating"]) return 1
-      if (a["rating"] > b["rating"]) return -1
-      return 0
-    })
-
-    setBookList(extractBooks(sortedData, pageNumber))
+    setBookList(extractBooks(books, pageNumber, true))
 
     setIsSorted(() => !isSorted)
 
@@ -47,7 +40,7 @@ const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number })
 
   const reset = () => {
     setFilteredCategory("")
-    setBookList(extractBooks(books))
+    setBookList(extractBooks(books, pageNumber))
     setIsSorted(false)
     setFilteredCategory(null)
   }
