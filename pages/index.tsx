@@ -8,19 +8,21 @@ import BookList from "../src/components/BookList"
 
 import { Book } from "../src/types/Book"
 
-const Home = ({ books }: { books: Book[] }) => (
-  <>
-    <Head>
-      <title>BooksToGive</title>
-    </Head>
+const Home = ({ books }: { books: Book[] }) => {
+  return (
+    <>
+      <Head>
+        <title>BooksToGive</title>
+      </Head>
 
-    <Layout>
-      <BookList
-        books={books}
-      />
-    </Layout>
-  </>
-)
+      <Layout>
+        <BookList
+          books={books}
+        />
+      </Layout>
+    </>
+  )
+}
 
 export default Home
 
