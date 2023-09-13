@@ -1,6 +1,6 @@
 import React, { Suspense, useState } from "react"
-import { useRouter } from "next/router"
 
+import PageLink from "./PageLink"
 import DisplayBookImage from "./DisplayBookImage"
 
 import { extractBooks } from "../lib/extractBooks"
@@ -8,20 +8,21 @@ import { extractBooks } from "../lib/extractBooks"
 import { Book } from "../types/Book"
 
 const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number }) => {
-  const initialData = books.map((book) => ({ ...book }))
-
   const [bookList, setBookList] = useState(extractBooks(books, pageNumber))
-
+  const [isSorted, setIsSorted] = useState(false)
   const [filteredCategory, setFilteredCategory] = useState<string | null>(null)
 
+
   const sortByRatingASC = () => {
-    const sortedData = books.sort((a, b) => {
+    const sortedData = books.slice().sort((a, b) => {
       if (a["rating"] < b["rating"]) return 1
       if (a["rating"] > b["rating"]) return -1
       return 0
     })
 
     setBookList(extractBooks(sortedData, pageNumber))
+
+    setIsSorted(() => !isSorted)
 
     window.scrollTo({
       top: 0,
@@ -46,18 +47,31 @@ const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number })
 
   const reset = () => {
     setFilteredCategory("")
-    setBookList([...initialData])
+    setBookList(extractBooks(books))
+    setIsSorted(false)
+    setFilteredCategory(null)
   }
 
   return (
     <>
+      <PageLink />
+
       <div className="flex flex-col md:flex-row items-start md:items-center gap-4 mb-8">
-        <button
-          onClick={sortByRatingASC}
-          className="bg-white hover:bg-gray-100 text-sm md:text-base text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
-        >
-          📈 レートが高い順に並び変え
-        </button>
+        {isSorted ? (
+          <button
+            onClick={reset}
+            className="bg-white hover:bg-gray-100 text-sm md:text-base text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+          >
+            リセット
+          </button>
+        ) : (
+          <button
+            onClick={sortByRatingASC}
+            className="bg-white hover:bg-gray-100 text-sm md:text-base text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
+          >
+            📈 レートが高い順に並び変え
+          </button>
+        )}
 
         <p>絞り込み :
           {filteredCategory && (
@@ -74,7 +88,7 @@ const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number })
         </p>
       </div>
 
-      <p className="text-xl">・ {bookList.length}冊の本</p>
+      {/* <p className="text-xl">・ {bookList.length}冊の本</p> */}
 
       <div className="flex flex-wrap md:gap-x-8 md:gap-y-12">
         <Suspense fallback={<p className="my-24 text-2xl text-neutral-500">データをロードしています...。</p>}>
