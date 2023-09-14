@@ -9,18 +9,15 @@ import { Book } from "../types/Book"
 import useStore from "../store/store"
 
 const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number }) => {
-  const { sortState, changeSort } = useStore()
+  const { isSorted, changeSortState } = useStore()
 
-  const [bookList, setBookList] = useState(extractBooks(books, pageNumber, sortState))
-  const [isSorted, setIsSorted] = useState(sortState)
+  const [bookList, setBookList] = useState(extractBooks(books, pageNumber, isSorted))
   const [filteredCategory, setFilteredCategory] = useState<string | null>(null)
 
   const sortByRatingASC = () => {
     setBookList(extractBooks(books, pageNumber, true))
 
-    setIsSorted(() => !isSorted)
-
-    changeSort()
+    changeSortState()
 
     window.scrollTo({
       top: 0,
@@ -46,9 +43,8 @@ const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number })
   const reset = () => {
     setFilteredCategory("")
     setBookList(extractBooks(books, pageNumber))
-    setIsSorted(false)
     setFilteredCategory(null)
-    changeSort()
+    changeSortState()
   }
 
   return (
@@ -92,8 +88,6 @@ const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number })
           </>
         )}
       </div>
-
-      {/* <p className="text-xl">・ {bookList.length}冊の本</p> */}
 
       <div className="flex flex-wrap md:gap-x-8 md:gap-y-12">
         <Suspense fallback={<p className="my-24 text-2xl text-neutral-500">データをロードしています...。</p>}>
