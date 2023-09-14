@@ -2,14 +2,15 @@ import { create } from 'zustand'
 
 type State = {
   count: number
-  isSorted: boolean
+  sortState: boolean
+  changeSort: () => void
 }
 
 const useStore = create<State>((set) => ({
   count: 1,
-  isSorted: false
+  sortState: false,
+  changeSort: () => set((state) => ({ sortState: !state.sortState }))
   /*
-  increase: () => set((state) => ({ count: state.count + 1 })),
   decrease: () => set((state) => ({ count: state.count - 1 })),
   reset: () => set({ count: 0 }),
   */
