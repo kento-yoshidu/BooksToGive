@@ -6,17 +6,21 @@ const PageLink = () => {
 
   const { id } = router.query
 
-  const prev = id ? Number(id) - 1 : null
-  const next = Number(id) + 1
-  
+  const prev = id ? (id === "2" ? "/" : `/page/${Number(id) - 1}`) : null
+
+  const next = id ? (id === "3" ? null : `/page/${Number(id) + 1}`) : `/page/2`
 
   return (
     <div className="mb-8">
       <h1>Page Link {id}</h1>
 
-      <Link href={"/"}>Prev</Link>
+      {prev && (
+        <Link href={prev}>Prev</Link>
+      )}
 
-      <Link href={`/page/2`}>Next</Link>
+      {next && (
+        <Link href={next}>Next</Link>
+      )}
     </div>
   )
 }
