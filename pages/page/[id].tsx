@@ -3,7 +3,6 @@ import { useRouter } from "next/router"
 import { GetStaticProps } from "next"
 
 import prisma from "../../src/lib/prisma"
-import { extractBooks } from "../../src/lib/extractBooks"
 
 import Layout from "../../src/components/Layout"
 import BookList from "../../src/components/BookList"
@@ -21,7 +20,7 @@ const Page = ({ books }: { books: Book[] }) => {
       </Head>
 
       <Layout>
-        <BookList books={books} pageNumber={Number(id)} />
+        <BookList key={id as string} books={books} pageNumber={Number(id)} />
       </Layout>
     </>
   )
