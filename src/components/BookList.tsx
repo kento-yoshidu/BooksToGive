@@ -62,11 +62,11 @@ const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number })
         )}
 
         {isSorted ? (
-          <button
+          <p
             className="bg-gray-300 text-sm md:text-base text-gray-500 font-semibold py-2 px-4 border border-gray-400 rounded shadow cursor-not-allowed"
           >
             📈 レートが高い順に並び変え中!
-          </button>
+          </p>
         ) : (
           <button
             onClick={sortByRatingASC}

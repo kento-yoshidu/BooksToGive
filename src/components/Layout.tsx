@@ -4,7 +4,6 @@ import Link from "next/link"
 import { useRouter } from "next/router"
 import { useSession, signOut } from "next-auth/react"
 
-import Header from "./Header"
 import Technology from "./Technology"
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
@@ -21,8 +20,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      <Header />
-
       <div className="w-5/6 md:w-1/2 mx-auto mt-10 min-h-[75vh]">
         <header className="mb-4 relative">
           {router.pathname !== "/"
