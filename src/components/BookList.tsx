@@ -9,7 +9,7 @@ import { Book } from "../types/Book"
 import useStore from "../store/store"
 
 const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number }) => {
-  const { isSorted, changeSortState } = useStore()
+  const { isSorted, category, changeSortState, setCategoryState } = useStore()
 
   const [bookList, setBookList] = useState(extractBooks(books, pageNumber, isSorted))
   const [filteredCategory, setFilteredCategory] = useState<string | null>(null)
@@ -26,6 +26,8 @@ const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number })
   }
 
   const filterByCategory = (e: string) => {
+    setCategoryState(e)
+
     setFilteredCategory(e)
 
     const filteredData = books.filter((book) => {
