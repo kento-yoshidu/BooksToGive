@@ -88,6 +88,10 @@ const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number })
 
       <div className="flex flex-wrap md:gap-x-8 md:gap-y-12">
         <Suspense fallback={<p className="my-24 text-2xl text-neutral-500">データをロードしています...。</p>}>
+          {bookList.length === 0 && (
+            <p>本がありません。</p>
+          )}
+
           {bookList.map((book, i) => {
             let star = "⭐️".repeat(book.rating)
 
@@ -101,8 +105,6 @@ const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number })
                 key={book.id}
               >
                 <p className="inline-block mb-4 px-4 border-zinc-500 border-2">{i + 1}</p>
-
-                <p>id={book.id}</p>
 
                 <DisplayBookImage
                   isbn={book.isbn}

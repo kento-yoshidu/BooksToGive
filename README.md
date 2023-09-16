@@ -8,6 +8,7 @@
   - (useSWR, Next Auth, React Hook Form)
 - TypeScript
 - Tailwind CSS
+- Zustand 🐻
 - Prisma
 - Supabase
 - Vercel
