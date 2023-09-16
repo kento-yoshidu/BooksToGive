@@ -1,7 +1,7 @@
-import React from 'react';
-import { useRouter } from 'next/router';
-import { useSession } from 'next-auth/react';
-import ProtectedRoute from './ProtectedRoute';
+import React from 'react'
+import { useRouter } from 'next/router'
+import { useSession } from 'next-auth/react'
+import ProtectedRoute from './ProtectedRoute'
 
 const authRoutes = ["/register"]
 
@@ -9,7 +9,7 @@ const AuthWrapper = ({ children }: { children: React.ReactNode }) => {
   const session = useSession()
   const router = useRouter()
 
-  if (session.status === 'loading') return null
+  if (session.status === 'loading') return <p>Loading...</p>
 
   return (
     <>
