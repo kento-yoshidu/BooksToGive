@@ -3,21 +3,22 @@ import React, { Suspense, useState } from "react"
 import PageLink from "./PageLink"
 import DisplayBookImage from "./DisplayBookImage"
 
-import { extractBooks } from "../lib/extractBooks"
+// import { extractBooks } from "../lib/extractBooks"
+import { getBooks } from "../lib/extractBooks"
 
 import { Book } from "../types/Book"
 import useStore from "../store/store"
 
 const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number }) => {
-  const { isSorted, changeSortState } = useStore()
+  const { isSorted, category, changeSortState, setCategoryState } = useStore()
 
-  const [bookList, setBookList] = useState(extractBooks(books, pageNumber, isSorted))
+  const [bookList, setBookList] = useState(getBooks(books, pageNumber, isSorted, category))
   const [filteredCategory, setFilteredCategory] = useState<string | null>(null)
 
   const sortByRatingASC = () => {
-    setBookList(extractBooks(books, pageNumber, true))
-
     changeSortState()
+
+    setBookList(getBooks(books, pageNumber, true, category!))
 
     window.scrollTo({
       top: 0,
@@ -26,13 +27,9 @@ const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number })
   }
 
   const filterByCategory = (e: string) => {
-    setFilteredCategory(e)
+    setCategoryState(e)
 
-    const filteredData = books.filter((book) => {
-      return book.category === e
-    })
-
-    setBookList(extractBooks(filteredData, pageNumber))
+    setBookList(getBooks(books, pageNumber, isSorted, e))
 
     window.scrollTo({
       top: 0,
@@ -41,10 +38,10 @@ const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number })
   }
 
   const reset = () => {
-    setFilteredCategory("")
-    setBookList(extractBooks(books, pageNumber))
+    setBookList(getBooks(books, pageNumber))
     setFilteredCategory(null)
     changeSortState()
+    setCategoryState("")
   }
 
   return (

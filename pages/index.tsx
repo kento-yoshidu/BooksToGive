@@ -7,6 +7,7 @@ import Layout from "../src/components/Layout"
 import BookList from "../src/components/BookList"
 
 import { Book } from "../src/types/Book"
+import useStore from "../src/store/store"
 
 const Home = ({ books }: { books: Book[] }) => {
   return (
