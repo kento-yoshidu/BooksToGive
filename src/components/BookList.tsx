@@ -49,7 +49,7 @@ const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number })
       <PageLink />
 
       <div className="flex flex-col md:flex-row items-start md:items-center gap-4 mb-8">
-        {(isSorted || filteredCategory) && (
+        {(isSorted || category) && (
           <button
             onClick={reset}
             className="bg-white hover:bg-gray-100 text-sm md:text-base text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
@@ -73,16 +73,12 @@ const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number })
           </button>
         )}
 
-        {filteredCategory && (
-          <>
-            <button
-              className="ml-2 mr-1 bg-white hover:bg-gray-100 text-xs font-semibold p-1 border border-gray-400 rounded shadow"
-              onClick={reset}
-            >
-            ❌
-            </button>
-            <span>{filteredCategory}</span>
-          </>
+        {category && (
+          <p
+            className="bg-gray-300 text-sm md:text-base text-gray-500 font-semibold py-2 px-4 border border-gray-400 rounded shadow cursor-not-allowed"
+          >
+            「{category}」で絞り込み中
+          </p>
         )}
       </div>
 
@@ -104,7 +100,11 @@ const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number })
                 className="mt-6 pb-6 border-b-2 border-gray-300 w-full md:w-[45%]"
                 key={book.id}
               >
-                <p className="inline-block mb-4 px-4 border-zinc-500 border-2">{i + 1}</p>
+                {pageNumber ? (
+                  <p className="inline-block mb-4 px-4 border-zinc-500 border-2">{(pageNumber - 1) * 10 + i + 1}</p>
+                ) : (
+                  <p className="inline-block mb-4 px-4 border-zinc-500 border-2">{i + 1}</p>
+                )}
 
                 <DisplayBookImage
                   isbn={book.isbn}
