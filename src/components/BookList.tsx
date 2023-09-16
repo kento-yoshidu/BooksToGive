@@ -1,22 +1,33 @@
-import React, { Suspense, useState } from "react"
+import React, { Suspense, useEffect, useState } from "react"
 
 import PageLink from "./PageLink"
 import DisplayBookImage from "./DisplayBookImage"
 
-// import { extractBooks } from "../lib/extractBooks"
 import { getBooks } from "../lib/extractBooks"
+import { bookCounter } from "../lib/bookCount"
 
 import { Book } from "../types/Book"
 import useStore from "../store/store"
 
 const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number }) => {
-  const { isSorted, category, changeSortState, setCategoryState } = useStore()
+  const {
+    isSorted,
+    category,
+    changeSortState,
+    setCategoryState,
+  } = useStore()
 
   const [bookList, setBookList] = useState(getBooks(books, pageNumber, isSorted, category))
-  const [filteredCategory, setFilteredCategory] = useState<string | null>(null)
+  const [bookCount, setBookCount] = useState(books.length)
+
+  useEffect(() => {
+    if (category) {
+      setBookCount(bookCounter(books, category))
+    }
+  }, [category])
 
   const sortByRatingASC = () => {
-    changeSortState()
+    changeSortState(true)
 
     setBookList(getBooks(books, pageNumber, true, category!))
 
@@ -38,14 +49,16 @@ const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number })
   }
 
   const reset = () => {
-    setBookList(getBooks(books, pageNumber))
-    setFilteredCategory(null)
-    changeSortState()
+    changeSortState(false)
     setCategoryState("")
+    setBookList(getBooks(books, pageNumber))
+    setBookCount(books.length)
   }
 
   return (
     <>
+      <p className="text-xl my-8">{bookCount}冊の本</p>
+
       <PageLink />
 
       <div className="flex flex-col md:flex-row items-start md:items-center gap-4 mb-8">
