@@ -11,7 +11,6 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons"
 
 import "@fortawesome/fontawesome-svg-core/styles.css"
 import { config } from "@fortawesome/fontawesome-svg-core"
-import Header from "./Header"
 
 config.autoAddCss = false
 
@@ -21,8 +20,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      <Header />
-
       <div className="w-5/6 md:w-1/2 mx-auto mt-10 min-h-[75vh]">
         <header className="mb-4 relative">
           {router.pathname !== "/"
