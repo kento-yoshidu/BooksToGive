@@ -7,23 +7,21 @@ import Layout from "../src/components/Layout"
 import BookList from "../src/components/BookList"
 
 import { Book } from "../src/types/Book"
-import useStore from "../src/store/store"
+import Loading from "../src/components/Loading"
 
-const Home = ({ books }: { books: Book[] }) => {
-  return (
-    <>
-      <Head>
-        <title>BooksToGive</title>
-      </Head>
+const Home = ({ books }: { books: Book[] }) => (
+  <>
+    <Head>
+      <title>BooksToGive</title>
+    </Head>
 
-      <Layout>
-        <BookList
-          books={books}
-        />
-      </Layout>
-    </>
-  )
-}
+    <Layout>
+      <BookList
+        books={books}
+      />
+    </Layout>
+  </>
+)
 
 export default Home
 
