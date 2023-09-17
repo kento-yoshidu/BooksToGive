@@ -103,7 +103,12 @@ const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number })
       </div>
 
       <div className="flex flex-wrap md:gap-x-8 md:gap-y-12">
-        <Suspense fallback={<p className="my-24 text-2xl text-neutral-500">データをロードしています...。</p>}>
+        <Suspense fallback={
+          <div className="w-full h-[30vh] md:h-[50vh] flex justify-center items-center flex-col gap-y-12">
+            <p className="text-3xl text-neutral-400">Now Loading...</p>
+            <div className="animate-spin h-10 w-10 border-4 border-blue-500 rounded-full border-t-transparent"></div>
+          </div>
+        }>
           {bookList.map((book, i) => {
             let star = "⭐️".repeat(book.rating)
 
@@ -141,6 +146,8 @@ const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number })
           })}
         </Suspense>
       </div>
+
+      <PageLink bookCount={Number(bookCount)} />
     </>
   )
 }

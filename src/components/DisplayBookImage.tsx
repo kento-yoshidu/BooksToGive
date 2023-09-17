@@ -17,7 +17,7 @@ const DisplayBookImage = ({ isbn }: { isbn: string }) => {
     return (
       <div className="mb-4 text-neutral-500">
         <p>本の情報を取得できませんでした。</p>
-        <p>isbn : {isbn}</p>
+        <p>isbn : {isbn} で検索お願いします🙇‍♂️</p>
       </div>
     )
   }
