@@ -3,7 +3,7 @@ import React, { Suspense, useEffect, useState } from "react"
 import PageLink from "./PageLink"
 import DisplayBookImage from "./DisplayBookImage"
 
-import { getBooks } from "../lib/extractBooks"
+import { getBooks } from "../lib/getBooks"
 import { bookCounter } from "../lib/bookCount"
 
 import { Book } from "../types/Book"
@@ -59,7 +59,7 @@ const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number })
     <>
       <p className="text-xl my-8">{bookCount}冊の本</p>
 
-      <PageLink />
+      <PageLink bookCount={Number(bookCount)} />
 
       <div className="flex flex-col md:flex-row items-start md:items-center gap-4 mb-8">
         {(isSorted || category) && (
@@ -73,7 +73,7 @@ const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number })
 
         {isSorted ? (
           <p
-            className="bg-gray-300 text-sm md:text-base text-gray-500 font-semibold py-2 px-4 border border-gray-400 rounded shadow cursor-not-allowed"
+            className="bg-gray-200 text-sm md:text-base text-gray-500 font-semibold py-2 px-4 border border-gray-400 rounded shadow cursor-not-allowed"
           >
             📈 レートが高い順に並び変え中!
           </p>
@@ -88,7 +88,7 @@ const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number })
 
         {category && (
           <p
-            className="bg-gray-300 text-sm md:text-base text-gray-500 font-semibold py-2 px-4 border border-gray-400 rounded shadow cursor-not-allowed"
+            className="bg-gray-200 text-sm md:text-base text-gray-500 font-semibold py-2 px-4 border border-gray-400 rounded shadow cursor-not-allowed"
           >
             「{category}」で絞り込み中
           </p>
