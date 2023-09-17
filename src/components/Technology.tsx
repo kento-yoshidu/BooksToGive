@@ -8,6 +8,7 @@ const Technology = () => (
       </ul>
       <li className="mb-2">⚙ TypeScript</li>
       <li className="mb-2">⚙ Tailwind CSS</li>
+      <li className="mb-2">⚙ Zustand 🐻</li>
       <li className="mb-2">⚙ Prisma</li>
       <li className="mb-2">⚙ Supabase</li>
       <li className="mb-2">⚙ Vercel</li>
