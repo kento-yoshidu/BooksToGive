@@ -11,7 +11,7 @@ import { Book } from "../../src/types/Book"
 
 const Page = ({ books }: { books: Book[] }) => {
   const router = useRouter()
-  const { id } = router.query
+  const { page } = router.query
 
   return (
     <>
@@ -20,7 +20,7 @@ const Page = ({ books }: { books: Book[] }) => {
       </Head>
 
       <Layout>
-        <BookList key={id as string} books={books} pageNumber={Number(id)} />
+        <BookList key={page as string} books={books} pageNumber={Number(page)} />
       </Layout>
     </>
   )
@@ -40,7 +40,7 @@ export async function getStaticPaths() {
   const paths = []
 
   for (let i = 2; i <= (Math.ceil(books.length / 10)); i++) {
-    paths.push({ params: { id: String(i) }})
+    paths.push({ params: { page: String(i) }})
   }
 
   return { paths, fallback: false }
