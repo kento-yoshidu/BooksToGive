@@ -8,8 +8,11 @@ import { bookCounter } from "../lib/bookCount"
 
 import { Book } from "../types/Book"
 import useStore from "../store/store"
+import { useRouter } from "next/router"
 
 const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number }) => {
+  const router = useRouter()
+
   const {
     isSorted,
     category,
@@ -25,6 +28,10 @@ const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number })
       setBookCount(bookCounter(books, category))
     }
   }, [category])
+
+  if (bookList.length === 0) {
+    router.push("/")
+  }
 
   const sortByRatingASC = () => {
     changeSortState(true)

@@ -11,7 +11,6 @@ import { faGithub } from "@fortawesome/free-brands-svg-icons"
 
 import "@fortawesome/fontawesome-svg-core/styles.css"
 import { config } from "@fortawesome/fontawesome-svg-core"
-import Header from "./Header"
 
 config.autoAddCss = false
 
@@ -21,11 +20,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <>
-      {process.env.NODE_ENV === "development" && (
-        <Header />
-      )}
-
-      <div className="w-5/6 md:w-1/2 mx-auto mt-10 min-h-[75vh]">
+      <div className="w-5/6 md:w-1/2 mx-auto mt-10">
         <header className="mb-4 relative">
           {router.pathname !== "/"
             ? (
@@ -40,6 +35,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             : (
               <h1 className="text-4xl">BooksToGive</h1>
             )}
+
             {data && (
               <button
                 className="md:absolute top-1/2 left-60 -translate-y-1/2 bg-white hover:bg-gray-100 text-sm text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow"
@@ -50,7 +46,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             )}
         </header>
 
-        <p className="mb-4">更新日 : <time dateTime="2023-09-06">2023年9月6日</time></p>
+        <p className="mb-4">更新日 : <time dateTime="2023-09-17">2023年9月17日</time></p>
 
         {children}
 
