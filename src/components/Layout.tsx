@@ -46,7 +46,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
             )}
         </header>
 
-        <p className="mb-4">更新日 : <time dateTime="2023-10-22">2023年10月22日</time></p>
+        <p className="mb-4">更新日 : <time dateTime="2023-11-13">2023年11月13日</time></p>
 
         {children}
 
