@@ -30,7 +30,7 @@ const DisplayBookImage = ({ isbn }: { isbn: string }) => {
         target="_blank"
         rel="noreferrer"
       >
-        <h2 className="text-lg md:text-xl mb-4">{data.items[0].volumeInfo.title}</h2>
+        <h2 className="text-lg md:text-xl mb-4 h-14">{data.items[0].volumeInfo.title}</h2>
       </a>
 
       <div
