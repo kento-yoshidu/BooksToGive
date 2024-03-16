@@ -36,6 +36,8 @@ const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number })
   const sortByRatingASC = () => {
     changeSortState(true)
 
+    router.push("/")
+
     setBookList(getBooks(books, pageNumber, true, category!))
 
     window.scrollTo({
@@ -49,6 +51,7 @@ const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number })
 
     setBookList(getBooks(books, pageNumber, isSorted, e))
 
+    router.push("/")
     window.scrollTo({
       top: 0,
       behavior: "smooth"
@@ -82,7 +85,7 @@ const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number })
           <p
             className="bg-gray-200 text-sm md:text-base text-gray-500 font-semibold py-2 px-4 border border-gray-400 rounded shadow cursor-not-allowed"
           >
-            📈 レートが高い順に並び変え中!
+            📈 レートが高い順に並び変え中❗
           </p>
         ) : (
           <button
@@ -97,7 +100,7 @@ const BookList = ({ books, pageNumber }: { books: Book[], pageNumber?: number })
           <p
             className="bg-gray-200 text-sm md:text-base text-gray-500 font-semibold py-2 px-4 border border-gray-400 rounded shadow cursor-not-allowed"
           >
-            「{category}」で絞り込み中
+            「{category}」で絞り込み中❗
           </p>
         )}
       </div>
